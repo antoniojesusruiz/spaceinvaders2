@@ -1,2 +1,2 @@
 # spaceinvaders2
-Pa Android
+Primer repositorio de la 2º version de Space Invaders [vacío]
