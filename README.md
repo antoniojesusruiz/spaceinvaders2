@@ -4,5 +4,5 @@
 *Antonio* -> EnemyShip
 *Alberto* -> PlayerShip
 *Ángel* -> GameScreen
-*Squadron y Battalion* -> Jose
-*SettingsManager y AssetManager* -> Bruno
+*Jose* -> Squadron y Battalion
+*Bruno* -> SettingsManager y AssetManager
