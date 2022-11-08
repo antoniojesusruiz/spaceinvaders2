@@ -26,6 +26,7 @@ public class GameScreen implements Screen {
     public GameScreen(Game aGame) {
         game = aGame;
 
+	//Comentario de prueba
         //Esta orden se puede poner también en el show()
         Gdx.input.setInputProcessor(stage);
 
