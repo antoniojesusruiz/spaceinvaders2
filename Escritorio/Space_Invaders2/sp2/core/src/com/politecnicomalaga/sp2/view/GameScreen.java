@@ -27,7 +27,8 @@ public class GameScreen implements Screen {
         game = aGame;
 
 	//Comentario de prueba
-        //Esta orden se puede poner también en el show()
+        //Comentario de prueba usando mi rama amm_GameSreen
+	//Esta orden se puede poner también en el show()
         Gdx.input.setInputProcessor(stage);
 
         stage = new Stage(new ScreenViewport());
