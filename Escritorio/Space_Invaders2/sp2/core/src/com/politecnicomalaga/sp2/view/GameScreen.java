@@ -45,24 +45,26 @@ public class GameScreen implements Screen {
         heroShip.addListener(new InputListener() {
 
             public void clicked(InputEvent event, float x, float y, int pointer, int button) {
-
-
                 //return true;
             }
 
             public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {
-
                 return true;
             }
 
             public void touchUp(InputEvent event, float x, float y, int pointer, int button) {
+            }
 
+            //Permite mover la nave segun la posicion del raton en tiempo real
+            @Override
+            public void touchDragged(InputEvent event, float x, float y, int pointer) {
+                super.touchDragged(event, x, y, pointer);
             }
         });
         heroShip.setTouchable(Touchable.enabled);
 
     }
-
+ 
     //Muestra un mensaje por la terminal)?
     @Override
     public void show() {
