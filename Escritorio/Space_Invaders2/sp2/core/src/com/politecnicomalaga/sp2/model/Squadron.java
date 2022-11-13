@@ -1,18 +1,21 @@
 package com.politecnicomalaga.sp2.model;
 
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.utils.Array;
+import com.politecnicomalaga.sp2.managers.GameManager;
+import com.politecnicomalaga.sp2.managers.SettingsManager;
 
-public class Squadron {
+public class Squadron extends Actor {
 
     //ATRIBUTOS
 
     protected Array<EnemyShip> tropas;
     protected boolean right;
 
-    //(CONSTANTES DEL GUILLE)
-    int CONSTANTEnumNAVES;
+
+
 
 
 
@@ -24,7 +27,7 @@ public class Squadron {
 
         //We have to create all the squadrons
 
-        for (int i=0;i<8;i++) {
+        for (int i = 0; i< SettingsManager.ENEMIES_PER_SQUADRON; i++) {
             EnemyShip newEnemy = new EnemyShip();
             baseStage.addActor(newEnemy);
         }
@@ -32,14 +35,23 @@ public class Squadron {
 
     //CONSTRUCTORES
 
-    public Squadron(int widthScreen, float vertPosition){
+    public Squadron(Stage baseStage, float vertPosition){
+        tropas= new Array<EnemyShip>();
+
         EnemyShip alien;
-        float distanceBTWships= widthScreen/(CONSTANTEnumNAVES+1);
+
+        float distanceBTWships=  SettingsManager.SCREEN_WIDTH/( SettingsManager.ENEMIES_PER_SQUADRON+1);
+
         right=true;
-        for (int i=0;i<CONSTANTEnumNAVES;i++){
+
+        for (int i=0;i< SettingsManager.ENEMIES_PER_SQUADRON;i++){
+
             alien = new EnemyShip();
-            alien.setBounds((i+1)*distanceBTWships,vertPosition,"AnchoGuille","altoGuille");
+
+            alien.setBounds((i+1)*distanceBTWships,vertPosition,SettingsManager.SCREEN_WIDTH,SettingsManager.SCREEN_HEIGHT);
+
             tropas.add(alien);
+            baseStage.addActor(alien);
         }
     }
 
@@ -47,24 +59,25 @@ public class Squadron {
 
     public void pintarse (SpriteBatch sb){
         for (EnemyShip et : tropas){
----------------------//ESPERAR A QUE HAGAN EL MÉTODO PARA PINTARSE--------------------
-            et.pintarse(sb);
+
+            et.draw(sb, GameManager.getSingleton().getGameTime());
         }
     }
 
-    //MOVERSE
-    public void moverse(){
+    //MOVERSE pal futuro
+/*
+*    public void moverse(){
         for (EnemyShip et : tropas){
 ---------------------//ESPERAR A QUE HAGAN EL MÉTODO PARA MOVERSE--------------------
             et.moverse();
         }
     }
+* */
 
     //DISPOSE
 
     public void dispose(){
         for (EnemyShip et : tropas){
-            ---------------------//ESPERAR A QUE HAGAN EL MÉTODO DISPOSE--------------
             et.dispose();
         }
     }
@@ -75,29 +88,32 @@ public class Squadron {
         return tropas.size;
     }
 
-    //COLISIÓN
+    //COLISIÓN pal futuro
 
-    //(HACE FALTA LA CLASE "objetoVolador"
+/*
+*    //(HACE FALTA LA CLASE "objetoVolador"
     public boolean colision (????){
 
     }
+*
+* */
 
     //DISPARAR
 
-    //HACE FALTA LA CLASE "DisparoEnemigo"
-    public DisparoAlien disparo(){
-        DisparoEnemigo tirito = null;
-        EnemyShip naveDisparando;
-        int pos;
-
-        if (!tropas.isEmpty()){
-            pos = (int) (Math.random()*(tropas.size-1));
-
-            naveDisparando= tropas.get(pos);
-
-            tirito = new
-        }
-    }
+    //HACE FALTA LA CLASE "DisparoEnemigo" pal futuro
+//    public DisparoAlien disparo(){
+//        DisparoEnemigo tirito = null;
+//        EnemyShip naveDisparando;
+//        int pos;
+//
+//        if (!tropas.isEmpty()){
+//            pos = (int) (Math.random()*(tropas.size-1));
+//
+//            naveDisparando= tropas.get(pos);
+//
+//            tirito = new
+//        }
+//    }
 
 
 }

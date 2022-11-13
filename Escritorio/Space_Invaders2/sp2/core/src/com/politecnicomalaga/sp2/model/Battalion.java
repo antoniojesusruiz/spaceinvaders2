@@ -1,8 +1,11 @@
 package com.politecnicomalaga.sp2.model;
 
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.utils.Array;
+import com.politecnicomalaga.sp2.managers.AssetsManager;
+import com.politecnicomalaga.sp2.managers.SettingsManager;
 
 import java.util.ArrayList;
 
@@ -12,43 +15,48 @@ public class Battalion {
     private Array<Squadron> batallon;
 
 
-     //(CONSTANTES DEL GUILLE)
 
-   protected static int CONSTANTEnumESCUADRONES;
-    protected static int CONSTANTEaltoEscuadron=0;
-    protected static int CONSTANTEanchoEscuadron=0;
+
+    //(CONSTANTES DEL GUILLE)
 
 
 
 
 
-    public Battalion(Stage baseStage) {
+
+
+    /*public Battalion(Stage baseStage) {
         //Initiate the arraylist
         batallon = new Array<Squadron>();
 
 
         //We have to create all the squadrons
-        for (int i=0;i<4;i++) {
+        for (int i = 0; i< SettingsManager.SQUADRON_PER_BATALLON; i++) {
             Squadron newSquad = new Squadron(baseStage);
         }
-    }
+    }*/
 
     //CONSTRUCTORES
 
-    public void Batallon(int ancho, int alto){
-        ancho= CONSTANTEanchoEscuadron;
-        alto= CONSTANTEaltoEscuadron;
 
-        float distanciaEntreEscuadrones = (alto/2)/CONSTANTEnumESCUADRONES;
+    public Battalion(Stage baseStage){
+
+       int alto= SettingsManager.SCREEN_HEIGHT;
+       int ancho=SettingsManager.SCREEN_WIDTH;
+
+        float distanciaEntreEscuadrones = (alto/2)/SettingsManager.SQUADRON_PER_BATALLON;
 
         //lista de escuadrones
         batallon= new Array<>();
 
         //Crear escuadrones
-
-        for (int i=0; i<CONSTANTEnumESCUADRONES;i++){
-            Squadron escuadron = new Squadron(ancho,alto-distanciaEntreEscuadrones*(i+1));
+        float distancia=Gdx.graphics.getHeight()- SettingsManager.ENEMIES_SIZE;
+        for (int i=0; i<SettingsManager.SQUADRON_PER_BATALLON;i++){
+            Squadron escuadron = new Squadron(baseStage,alto-distanciaEntreEscuadrones*(i+1));
+            escuadron.setY(distancia);
+            distancia-= SettingsManager.ENEMIES_SIZE;
             batallon.add(escuadron);
+            baseStage.addActor(escuadron);
         }
     }
 
