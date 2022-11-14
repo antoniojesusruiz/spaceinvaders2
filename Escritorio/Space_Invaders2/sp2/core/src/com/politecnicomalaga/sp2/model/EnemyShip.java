@@ -7,7 +7,9 @@ import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.scenes.scene2d.Actor;
+import com.politecnicomalaga.sp2.managers.AssetsManager;
 import com.politecnicomalaga.sp2.managers.GameManager;
+import com.politecnicomalaga.sp2.managers.SettingsManager;
 
 public class EnemyShip extends Actor {
 
@@ -22,8 +24,8 @@ public class EnemyShip extends Actor {
         //TextureAtlas atlas = new TextureAtlas(Gdx.files.internal("images/enemy.pack"));
         //TextureAtlas atlas = new TextureAtlas(ATLAS);
         //TextureAtlas atlas= new TextureAtlas(Gdx.files.internal("sp2.png"));
-        TextureAtlas atlas= new TextureAtlas(Gdx.files.internal("sp2.atlas"));
-        skin = new Animation<TextureRegion>(0.25f, atlas.findRegions("ovni"), Animation.PlayMode.LOOP);
+        TextureAtlas atlas= new TextureAtlas(Gdx.files.internal(AssetsManager.ATLAS_FILE));
+        skin = new Animation<TextureRegion>(0.25f, atlas.findRegions("enemy"), Animation.PlayMode.LOOP);
 
     }
     @Override
@@ -32,7 +34,7 @@ public class EnemyShip extends Actor {
         TextureRegion currentFrame = skin.getKeyFrame(GameManager.getSingleton().getGameTime(), true);
         //batch.draw(currentFrame, this.getX(), this.getY());
         //LA ANCHURA Y EL ALTO HAY QUE PONERLO CON LAS CONSTANTES QUE TIENE QUE HACER GUILLE
-        batch.draw(currentFrame,this.getX(),this.getY(),this.getWidth(),this.getHeight());
+        batch.draw(currentFrame,this.getX(),this.getY(),SettingsManager.ENEMIES_SIZE, SettingsManager.ENEMIES_SIZE);
     }
     public void dispose(){
         if(this!=null){
