@@ -8,4 +8,4 @@
 *Bruno* -> SettingsManager y AssetManager
 
 
-Manitos, ¿alguno se acuerda de cómo iba el touchDragged? Llevo un par de días probando y no me sale creando el método y haciéndole un setX a la nave.
+Enlace Documento Reuniones → https://docs.google.com/document/d/1nVDDwuEoiaK1oi8bmWnEULbSCN43C6ktygkwqWo816k/edit?usp=sharing
