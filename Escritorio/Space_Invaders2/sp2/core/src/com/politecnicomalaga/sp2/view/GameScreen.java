@@ -9,8 +9,8 @@ import com.badlogic.gdx.scenes.scene2d.InputListener;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.Touchable;
 import com.badlogic.gdx.utils.viewport.ScreenViewport;
-import com.politecnicomalaga.sp2.view.model.Battalion;
-import com.politecnicomalaga.sp2.view.model.PlayerSpaceShip;
+import com.politecnicomalaga.sp2.model.Battalion;
+import com.politecnicomalaga.sp2.model.PlayerSpaceShip;
 
 /**
  * Clase GameScreen. Donde jugamos el juego y tenemos la batalla principal
@@ -42,10 +42,12 @@ public class GameScreen implements Screen {
         stage.addActor(heroShip);
 
         //Se que en esta parte se trata de mover a la nave
+
         heroShip.addListener(new InputListener() {
 
             public void clicked(InputEvent event, float x, float y, int pointer, int button) {
                 //return true;
+                Gdx.app.log("INFO","Se ha arrastrado la nave");
             }
 
             public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {
@@ -59,7 +61,7 @@ public class GameScreen implements Screen {
             @Override
             public void touchDragged(InputEvent event, float x, float y, int pointer) {
                 super.touchDragged(event, x, y, pointer);
-                System.out.println(x);
+
             }
         });
         heroShip.setTouchable(Touchable.enabled);
