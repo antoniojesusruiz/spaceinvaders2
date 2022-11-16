@@ -25,7 +25,7 @@ public class EnemyShip extends Actor {
         //TextureAtlas atlas = new TextureAtlas(ATLAS);
         //TextureAtlas atlas= new TextureAtlas(Gdx.files.internal("sp2.png"));
         TextureAtlas atlas= new TextureAtlas(Gdx.files.internal(AssetsManager.ATLAS_FILE));
-        skin = new Animation<TextureRegion>(0.25f, atlas.findRegions("enemy"), Animation.PlayMode.LOOP);
+        skin = new Animation<TextureRegion>(0.25f, atlas.findRegions(AssetsManager.ATLAS_ENEMY), Animation.PlayMode.LOOP);
 
     }
     @Override
