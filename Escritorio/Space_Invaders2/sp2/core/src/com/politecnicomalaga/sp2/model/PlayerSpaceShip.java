@@ -22,7 +22,7 @@ public class PlayerSpaceShip extends Actor {
         TextureAtlas atlas = new TextureAtlas(Gdx.files.internal(AssetsManager.ATLAS_FILE));
         setX(SettingsManager.SCREEN_WIDTH/2);
         setY(SettingsManager.MIDPLAYER_SIZE);
-        skin = new Animation<TextureRegion>(0.25f, atlas.findRegions("player"), Animation.PlayMode.LOOP);
+        skin = new Animation<TextureRegion>(0.25f, atlas.findRegions(AssetsManager.ATLAS_PLAYER), Animation.PlayMode.LOOP);
 
     }
     @Override
