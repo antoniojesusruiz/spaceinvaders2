@@ -6,4 +6,6 @@ public class AssetsManager {
     public static final String NUMBERS_EXT_SPRITES =".png";
 
     public static final String ATLAS_FILE = "sp2.atlas";
+    public static final String ATLAS_ENEMY = "enemy";
+    public static final String ATLAS_PLAYER = "player";
 }
