@@ -18,7 +18,10 @@ public class PlayerSpaceShip extends Actor {
 
     public PlayerSpaceShip() {
         super();
+        setBounds(0,0, SettingsManager.PLAYER_SIZE, SettingsManager.PLAYER_SIZE);
         TextureAtlas atlas = new TextureAtlas(Gdx.files.internal(AssetsManager.ATLAS_FILE));
+        setX(SettingsManager.SCREEN_WIDTH/2);
+        setY(SettingsManager.MIDPLAYER_SIZE);
         skin = new Animation<TextureRegion>(0.25f, atlas.findRegions("player"), Animation.PlayMode.LOOP);
 
     }
@@ -26,7 +29,7 @@ public class PlayerSpaceShip extends Actor {
     public void draw(Batch batch, float parentAlpha) {
         super.draw(batch, parentAlpha);
         TextureRegion currentFrame = skin.getKeyFrame(GameManager.getSingleton().getGameTime(), true);
-        batch.draw(currentFrame, SettingsManager.SCREEN_WIDTH/2, SettingsManager.MIDPLAYER_SIZE);
+        batch.draw(currentFrame, this.getX(), this.getY());
     }
 
     public void dispose() {

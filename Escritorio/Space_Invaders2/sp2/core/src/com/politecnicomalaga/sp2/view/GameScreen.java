@@ -9,6 +9,7 @@ import com.badlogic.gdx.scenes.scene2d.InputListener;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.Touchable;
 import com.badlogic.gdx.utils.viewport.ScreenViewport;
+import com.politecnicomalaga.sp2.managers.SettingsManager;
 import com.politecnicomalaga.sp2.model.Battalion;
 import com.politecnicomalaga.sp2.model.PlayerSpaceShip;
 
@@ -22,19 +23,20 @@ public class GameScreen implements Screen {
 
     private Stage stage;
     private Game game;
+    private PlayerSpaceShip heroShip;
 
 
     public GameScreen(Game aGame) {
         game = aGame;
 
         stage = new Stage(new ScreenViewport());
-
+        Gdx.input.setInputProcessor(stage);
         //We add the battalion, "the empire"
 
         Battalion empire = new Battalion(stage);
 
         //We add the main player
-        final PlayerSpaceShip heroShip = new PlayerSpaceShip();
+        heroShip = new PlayerSpaceShip();
         //Agregamos la nave principal al escenario
         stage.addActor(heroShip);
 
@@ -57,7 +59,7 @@ public class GameScreen implements Screen {
             //Permite mover la nave segun la posicion del raton en tiempo real
             @Override
             public void touchDragged(InputEvent event, float x, float y, int pointer) {
-                super.touchDragged(event, x, y, pointer);
+                heroShip.setX(event.getStageX());
 
             }
         });
@@ -69,7 +71,7 @@ public class GameScreen implements Screen {
     @Override
     public void show() {
         Gdx.app.log("MainScreen","show");
-	Gdx.input.setInputProcessor(stage);
+
     }
 
     //Renderiza el escenario
