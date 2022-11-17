@@ -12,9 +12,8 @@ import com.politecnicomalaga.sp2.managers.SettingsManager;
 public class PlayerShot extends Actor {
 
     private Texture skin;
-    private PlayerSpaceShip shotOwner;
 
-    public PlayerShot() {
+    public PlayerShot(PlayerSpaceShip shotOwner) {
         super();
         setBounds(0,0, SettingsManager.SHOT_WIDTH, SettingsManager.SHOT_HEIGHT);
         setX(shotOwner.getX());
@@ -32,6 +31,6 @@ public class PlayerShot extends Actor {
     @Override
     public void act(float delta) {
         super.act(delta);
-
+        this.setY(this.getY()+1);
     }
 }
