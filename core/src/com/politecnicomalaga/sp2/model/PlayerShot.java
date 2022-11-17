@@ -18,7 +18,7 @@ public class PlayerShot extends Actor {
         setBounds(0,0, SettingsManager.SHOT_WIDTH, SettingsManager.SHOT_HEIGHT);
         setX(shotOwner.getX());
         TextureAtlas atlas = new TextureAtlas(Gdx.files.internal(AssetsManager.ATLAS_FILE));
-        setY(shotOwner.getY()+SettingsManager.MIDPLAYER_SIZE+10);
+        setY(shotOwner.getY()+SettingsManager.PLAYER_SIZE);
         skin = new TextureRegion(atlas.findRegion("disparo_aliado")).getTexture();
     }
 
@@ -32,5 +32,11 @@ public class PlayerShot extends Actor {
     public void act(float delta) {
         super.act(delta);
         this.setY(this.getY()+1);
+    }
+
+    public void dispose() {
+        if (this!=null) {
+            this.dispose();
+        }
     }
 }
