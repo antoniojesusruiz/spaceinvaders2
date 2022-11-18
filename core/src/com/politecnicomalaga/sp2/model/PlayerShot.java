@@ -16,9 +16,11 @@ public class PlayerShot extends Actor {
     public PlayerShot(PlayerSpaceShip shotOwner) {
         super();
         setBounds(0,0, SettingsManager.SHOT_WIDTH, SettingsManager.SHOT_HEIGHT);
+        // Toma las posiciones de la nave principal y un poco de altura para no dibujarse en el
+        // mismo sitio.
         setX(shotOwner.getX());
-        TextureAtlas atlas = new TextureAtlas(Gdx.files.internal(AssetsManager.ATLAS_FILE));
         setY(shotOwner.getY()+SettingsManager.PLAYER_SIZE);
+        TextureAtlas atlas = new TextureAtlas(Gdx.files.internal(AssetsManager.ATLAS_FILE));
         skin = new TextureRegion(atlas.findRegion("disparo_aliado")).getTexture();
     }
 
@@ -31,6 +33,7 @@ public class PlayerShot extends Actor {
     @Override
     public void act(float delta) {
         super.act(delta);
+        // Se mueve verticalmente
         this.setY(this.getY()+1);
     }
 
