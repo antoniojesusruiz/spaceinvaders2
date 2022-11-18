@@ -8,9 +8,13 @@ public class LanguageManager {
     public static final int ENGLISH_LABEL = 1;
     public static final int PLAY_LABEL = 2;
     public static final int SETTING_LABEL = 3;
+    public static final int EXIT_LABEL = 4;
+    public static final int CREDITS_LABEL = 5;
+    public static final int SPLASH_LABEL = 6;
+    public static final int GAMEOVER_LABEL = 7;
 
-    private static final String[] spanishTexts = {"ESPAÑOL", "INGLES", "JUGAR", "CONFIGURACION"};
-    private static final String[] englishTexts = {"SPANISH", "ENGLISH", "PLAY","SETTING"};
+    private static final String[] spanishTexts = {"ESPAÑOL", "INGLES", "JUGAR", "CONFIGURACION", "SALIR", "CREDITOS", "SPACEINVADER", "FIN DEL JUEGO"};
+    private static final String[] englishTexts = {"SPANISH", "ENGLISH", "PLAY","SETTING", "EXIT", "CREDITS", "SPACEINVADER", "GAMEOVER"};
 
     private static LanguageManager singleton;
 
