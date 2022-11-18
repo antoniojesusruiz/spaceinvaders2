@@ -16,7 +16,7 @@ public class PlayerShot extends Actor {
     public PlayerShot(PlayerSpaceShip shotOwner) {
         super();
         setBounds(0,0, SettingsManager.SHOT_WIDTH, SettingsManager.SHOT_HEIGHT);
-        // Toma las posiciones de la nave principal y un poco de altura para no dibujarse en el
+        // Toma las posiciones de la nave principal y un poco de altura para no aparecer en el
         // mismo sitio.
         setX(shotOwner.getX());
         setY(shotOwner.getY()+SettingsManager.PLAYER_SIZE);
