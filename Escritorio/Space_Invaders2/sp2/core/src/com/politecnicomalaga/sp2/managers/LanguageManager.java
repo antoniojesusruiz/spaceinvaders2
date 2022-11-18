@@ -1,8 +1,8 @@
 package com.politecnicomalaga.sp2.managers;
 
 public class LanguageManager {
-    private static String[] language;
     public enum Lang{SPANISH,ENGLISH};
+    private static Lang activeLanguage;
 
     public static final int SPANISH_LABEL = 0;
     public static final int ENGLISH_LABEL = 1;
@@ -19,24 +19,23 @@ public class LanguageManager {
 
         if (singleton == null) {
             singleton = new LanguageManager();
-            language = spanishTexts;   //Lenguaje por defecto
+            activeLanguage = Lang.SPANISH;   //Lenguaje por defecto
         }
         return singleton;
     }
 
     //Cambio de idoma
     public void setActionLenguaje(Lang lang){
-
-        if(lang == Lang.SPANISH){
-            language = spanishTexts;
-        }
-        else if(lang == Lang.ENGLISH){
-            language = englishTexts;
-        }
+        activeLanguage = lang;
     }
 
     //Devuelve el texto correspondiente en el idioma configurado
     public String getString(int uiDescription){
-        return language[uiDescription];
+        if (activeLanguage == Lang.SPANISH){
+            return spanishTexts[uiDescription];
+        }else{
+            return englishTexts[uiDescription];
+        }
     }
+    
 }
