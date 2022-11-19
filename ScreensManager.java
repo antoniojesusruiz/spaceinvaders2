@@ -6,10 +6,15 @@ import com.politecnicomalaga.sp2.view.GameScreen;
 
 public class ScreensManager
 {
+    private static ScreensManager singleton;
+
     private enum SCREENS {
         GAME_SCREEN, GAMEOVER_SCREEN, SPLASH_SCREEN, CREDITS_SCREEN
     }
 
+    private ScreensManager(){
+
+    }
 
     public void getScreen(Game aGame, SCREENS screenToGet)
     {
@@ -29,8 +34,15 @@ public class ScreensManager
             case CREDITS_SCREEN: newScreen = new CreditsScreen(aGame);
             break;
         }
-        return ;
     }
 
+    public static ScreensManager getSingleton()
+    {
+        if(singleton == null)
+        {
+            singleton = new ScreensManager();
+        }
+        return singleton;
+    }
 
 }
