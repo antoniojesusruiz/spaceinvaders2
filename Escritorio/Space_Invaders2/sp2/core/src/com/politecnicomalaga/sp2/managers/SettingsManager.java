@@ -14,6 +14,9 @@ public class SettingsManager {
     public static final short PLAYER_SIZE = 64;
     public static final short MIDENEMIES_SIZE = 32;
     public static final short MIDPLAYER_SIZE = 32;
+    public static final short SHOT_WIDTH= 10;
+    public static final short SHOT_HEIGHT= 10;
+    public static final short FIRE_RATE_PLAYER=2;
 
     //public static final short ENEMY_ANIMATION_VEL = ;
     //public static final short PLAYER_ANIMATION_VEL = ;
