@@ -4,10 +4,12 @@ import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.GL20;
+import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.InputListener;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
+import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.utils.Align;
 import com.badlogic.gdx.utils.viewport.ScreenViewport;
@@ -19,14 +21,20 @@ public class GameOverScreen implements Screen {
     private Stage GameOverStage;
     private Game game;
 
+
+
     public GameOverScreen(final Game configGame){
+        TextureAtlas atlas = new TextureAtlas(Gdx.files.internal("uiskin.atlas"));
+
+        Skin skin = new Skin (Gdx.files.internal("uiskin.json"),atlas);
+
         game=configGame;
 
         GameOverStage= new Stage(new ScreenViewport());
 
         Gdx.input.setInputProcessor(GameOverStage);
 
-        Label title = new Label(LanguageManager.getSingleton().getString(LanguageManager.GAMEOVER_LABEL), AssetsManager.getTextSkin(),"black");
+        Label title = new Label(LanguageManager.getSingleton().getString(LanguageManager.GAMEOVER_LABEL),skin);
         title.setAlignment(Align.center);
         title.setY(Gdx.graphics.getHeight()-title.getHeight()*2);
         title.setWidth(Gdx.graphics.getWidth());
@@ -38,12 +46,12 @@ public class GameOverScreen implements Screen {
 
 
         //Boton para volver al menu
-        TextButton buttonExit= new TextButton(LanguageManager.getSingleton().getString(LanguageManager.EXIT_LABEL),AssetsManager.getTextSkin());
+        TextButton buttonExit= new TextButton(LanguageManager.getSingleton().getString(LanguageManager.EXIT_LABEL),skin);
         buttonExit.setWidth(Gdx.graphics.getWidth()/2);
         buttonExit.setPosition(Gdx.graphics.getWidth()/2-buttonExit.getWidth()/2,Gdx.graphics.getHeight()/2-buttonExit.getHeight()*4);
 
 
-        TextButton buttonPlay= new TextButton(LanguageManager.getSingleton().getString(LanguageManager.EXIT_LABEL),AssetsManager.getTextSkin());
+        TextButton buttonPlay= new TextButton(LanguageManager.getSingleton().getString(LanguageManager.EXIT_LABEL),skin);
         buttonPlay.setWidth(Gdx.graphics.getWidth()/2);
         buttonPlay.setPosition(Gdx.graphics.getWidth()/2-buttonPlay.getWidth()/2,Gdx.graphics.getHeight()/2-buttonPlay.getHeight()*4);
 
@@ -126,6 +134,6 @@ public class GameOverScreen implements Screen {
 
     @Override
     public void dispose() {
-        configStage.dispose();
+        GameOverStage.dispose();
     }
 }

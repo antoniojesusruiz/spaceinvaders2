@@ -6,10 +6,12 @@ import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.InputListener;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
+import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.utils.Align;
 import com.badlogic.gdx.utils.viewport.ScreenViewport;
@@ -31,10 +33,13 @@ public class CreditsScreen implements Screen {
 
         Gdx.input.setInputProcessor(stage);
 
+        TextureAtlas atlas = new TextureAtlas(Gdx.files.internal("uiskin.atlas"));
+
+        Skin skin = new Skin (Gdx.files.internal("uiskin.json"),atlas);
 
 // botones con texto
 
-        TextButton exitButton = new TextButton(LanguageManager.getSingleton().getString(LanguageManager.EXIT_LABEL), AssetsManager.getTextSkin());
+        TextButton exitButton = new TextButton(LanguageManager.getSingleton().getString(LanguageManager.EXIT_LABEL),skin);
         exitButton.setWidth(Gdx.graphics.getWidth()/2);
         exitButton.setPosition(Gdx.graphics.getWidth()/2-exitButton.getWidth()/2,Gdx.graphics.getHeight()-exitButton.getHeight()*4);
 

@@ -5,10 +5,12 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.InputListener;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
+import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.utils.Align;
 import com.badlogic.gdx.utils.viewport.ScreenViewport;
@@ -33,10 +35,14 @@ public class SplashScreen implements Screen {
 
         stage = new Stage(new ScreenViewport());
 
+        TextureAtlas atlas = new TextureAtlas(Gdx.files.internal("uiskin.atlas"));
+
+        Skin skin = new Skin (Gdx.files.internal("uiskin.json"),atlas);
+
 //Esta orden se puede poner también en el show()
         Gdx.input.setInputProcessor(stage);
 
-        Label title = new Label(LanguageManager.getSingleton().getString(LanguageManager.SPLASH_LABEL), AssetsManager.getTextSkin(),"big-black");
+        Label title = new Label(LanguageManager.getSingleton().getString(LanguageManager.SPLASH_LABEL), skin,"big-black");
         title.setAlignment(Align.center);
         title.setY(Gdx.graphics.getHeight()-title.getHeight()*2);
         title.setWidth(Gdx.graphics.getWidth());
@@ -46,7 +52,7 @@ public class SplashScreen implements Screen {
 
 // botones con texto
 
-        TextButton playButton = new TextButton(LanguageManager.getSingleton().getString(LanguageManager.PLAY_LABEL), AssetsManager.getTextSkin());
+        TextButton playButton = new TextButton(LanguageManager.getSingleton().getString(LanguageManager.PLAY_LABEL),skin);
         playButton.setWidth(Gdx.graphics.getWidth()/2);
         playButton.setPosition(Gdx.graphics.getWidth()/2-playButton.getWidth()/2,Gdx.graphics.getHeight()-playButton.getHeight()*4);
 
@@ -75,7 +81,7 @@ public class SplashScreen implements Screen {
         stage.addActor(playButton);
 
 
-        TextButton settingsButton = new TextButton(LanguageManager.getSingleton().getString(LanguageManager.SETTING_LABEL), AssetsManager.getTextSkin());
+        TextButton settingsButton = new TextButton(LanguageManager.getSingleton().getString(LanguageManager.SETTING_LABEL), skin);
 
         settingsButton.setWidth(Gdx.graphics.getWidth()/2);
         settingsButton.setPosition(Gdx.graphics.getWidth()/2-settingsButton.getWidth()/2,Gdx.graphics.getHeight()-settingsButton.getHeight()*6);
@@ -103,7 +109,7 @@ public class SplashScreen implements Screen {
         //BOTON PARA LOS CREDITOS
 
 
-        TextButton creditsButton = new TextButton(LanguageManager.getSingleton().getString(LanguageManager.CREDITS_LABEL), AssetsManager.getTextSkin());
+        TextButton creditsButton = new TextButton(LanguageManager.getSingleton().getString(LanguageManager.CREDITS_LABEL), skin);
 
         creditsButton.setWidth(Gdx.graphics.getWidth()/2);
         creditsButton.setPosition(Gdx.graphics.getWidth()/2-creditsButton.getWidth()/2,Gdx.graphics.getHeight()-creditsButton.getHeight()*6);

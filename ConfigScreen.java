@@ -4,10 +4,12 @@ import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.GL20;
+import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.InputListener;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
+import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.utils.Align;
 import com.badlogic.gdx.utils.viewport.ScreenViewport;
@@ -26,7 +28,11 @@ public class ConfigScreen implements Screen{
         configStage= new Stage(new ScreenViewport());
         Gdx.input.setInputProcessor(configStage);
 
-        Label title = new Label(LanguageManager.getSingleton().getString(LanguageManager.SETTING_LABEL),AssetsManager.getTextSkin(),"black");
+        TextureAtlas atlas = new TextureAtlas(Gdx.files.internal("uiskin.atlas"));
+
+        Skin skin = new Skin (Gdx.files.internal("uiskin.json"),atlas);
+
+        Label title = new Label(LanguageManager.getSingleton().getString(LanguageManager.SETTING_LABEL),skin);
         title.setAlignment(Align.center);
         title.setY(Gdx.graphics.getHeight()-title.getHeight()*2);
         title.setWidth(Gdx.graphics.getWidth());
@@ -37,17 +43,17 @@ public class ConfigScreen implements Screen{
         //BOTONES CON TEXTO:
 
         //Boton para lenguaje español. cuidado con la variable spanish_BUTTON
-        TextButton buttonSpanish= new TextButton(LanguageManager.getSingleton().getString(LanguageManager.SPANISH_LABEL),AssetsManager.getTextSkin());
+        TextButton buttonSpanish= new TextButton(LanguageManager.getSingleton().getString(LanguageManager.SPANISH_LABEL),skin);
         buttonSpanish.setWidth(Gdx.graphics.getWidth()/2);
         buttonSpanish.setPosition(Gdx.graphics.getWidth()/2-buttonSpanish.getWidth()/2,Gdx.graphics.getHeight()/2-buttonSpanish.getHeight()*4);
 
         //Boton para lengua inglés. cuidado con la variable english_BUTTON
-        TextButton buttonEnglish= new TextButton(LanguageManager.getSingleton().getString(LanguageManager.ENGLISH_LABEL),AssetsManager.getTextSkin());
+        TextButton buttonEnglish= new TextButton(LanguageManager.getSingleton().getString(LanguageManager.ENGLISH_LABEL),skin);
         buttonEnglish.setWidth(Gdx.graphics.getWidth()/2);
         buttonEnglish.setPosition(Gdx.graphics.getWidth()/2-buttonEnglish.getWidth()/2,Gdx.graphics.getHeight()/2-buttonEnglish.getHeight()*4);
 
         //Boton para volver al menu
-        TextButton buttonExit= new TextButton(LanguageManager.getSingleton().getString(LanguageManager.EXIT_LABEL),AssetsManager.getTextSkin());
+        TextButton buttonExit= new TextButton(LanguageManager.getSingleton().getString(LanguageManager.EXIT_LABEL),skin);
         buttonExit.setWidth(Gdx.graphics.getWidth()/2);
         buttonExit.setPosition(Gdx.graphics.getWidth()/2-buttonExit.getWidth()/2,Gdx.graphics.getHeight()/2-buttonExit.getHeight()*4);
 
