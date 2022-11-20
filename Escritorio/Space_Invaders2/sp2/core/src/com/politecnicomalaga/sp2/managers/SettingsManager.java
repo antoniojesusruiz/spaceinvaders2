@@ -15,6 +15,7 @@ public class SettingsManager {
     public static final short MIDENEMIES_SIZE = 32;
     public static final short MIDPLAYER_SIZE = 32;
     public static final short SHOT_WIDTH= 10;
+    public static final short MIDSHOT_WIDTH = 5;
     public static final short SHOT_HEIGHT= 10;
     public static final short FIRE_RATE_PLAYER=2;
 
