@@ -71,7 +71,7 @@ public class PlayerSpaceShip extends Actor {
                 bala= recamara.get(0);
                 recamara.removeIndex(0);
                 bala.setY(this.getY()+SettingsManager.PLAYER_SIZE);
-                bala.setX(this.getX());
+                bala.setX(this.getX()+SettingsManager.MIDPLAYER_SIZE-SettingsManager.MIDSHOT_WIDTH);
                 //stage.addActor(bala);
                 disparosActivos.add(bala);
             }
