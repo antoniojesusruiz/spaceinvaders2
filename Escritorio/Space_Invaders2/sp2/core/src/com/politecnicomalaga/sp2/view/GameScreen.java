@@ -36,7 +36,7 @@ public class GameScreen implements Screen {
         Battalion empire = new Battalion(stage);
 
         //We add the main player
-        heroShip = new PlayerSpaceShip();
+        heroShip = new PlayerSpaceShip(stage);
         //Agregamos la nave principal al escenario
         stage.addActor(heroShip);
 
