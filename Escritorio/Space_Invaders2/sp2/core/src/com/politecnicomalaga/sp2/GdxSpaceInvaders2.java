@@ -20,9 +20,12 @@ import com.politecnicomalaga.sp2.view.SplashScreen;
 import jdk.nashorn.internal.runtime.regexp.joni.Config;
 
 public class GdxSpaceInvaders2 extends Game {
-	GameScreen screen;
+	ScreensManager screensMgr;
+	GameManager gameMgr;
 	SpriteBatch batch;
+	GameScreen gameSc;
     OrthographicCamera camera;
+	Screen activeScr;
 	static float fGameTime;
 
 	
@@ -30,8 +33,14 @@ public class GdxSpaceInvaders2 extends Game {
 	public void create () {
 		GdxSpaceInvaders2.fGameTime = 0f;
 		batch = new SpriteBatch();
-		screen = new GameScreen(this);
+		screensMgr = ScreensManager.getSingleton();
+		gameMgr = GameManager.getSingleton();
 		camera = new OrthographicCamera();
+		gameSc = new GameScreen(this);
+
+		activeScr = screensMgr.getScreen(this, ScreensManager.SCREENS.SPLASH_SCREEN);
+		this.setScreen(activeScr);
+
 		camera.setToOrtho(false, SettingsManager.SCREEN_WIDTH, SettingsManager.SCREEN_HEIGHT);
 	}
 
@@ -39,7 +48,7 @@ public class GdxSpaceInvaders2 extends Game {
 	public void render () {
 		ScreenUtils.clear(0, 0, 0, 1);
 		batch.begin();
-		screen.render(Gdx.graphics.getDeltaTime());
+		this.getScreen().render(Gdx.graphics.getDeltaTime());
 		batch.end();
 		GdxSpaceInvaders2.fGameTime += Gdx.graphics.getDeltaTime();
 	}
