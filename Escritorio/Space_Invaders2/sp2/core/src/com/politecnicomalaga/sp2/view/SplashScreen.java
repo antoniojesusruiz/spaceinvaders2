@@ -84,7 +84,7 @@ public class SplashScreen implements Screen {
         TextButton settingsButton = new TextButton(LanguageManager.getSingleton().getString(LanguageManager.SETTING_LABEL), skin);
 
         settingsButton.setWidth(Gdx.graphics.getWidth()/2);
-        settingsButton.setPosition(Gdx.graphics.getWidth()/2-settingsButton.getWidth()/2,Gdx.graphics.getHeight()-settingsButton.getHeight()*6);
+        settingsButton.setPosition(Gdx.graphics.getWidth()/2-settingsButton.getWidth()/2,Gdx.graphics.getHeight()-settingsButton.getHeight()*8);
 
 
 
@@ -119,7 +119,7 @@ public class SplashScreen implements Screen {
         creditsButton.addListener(new InputListener(){
             @Override
             public void touchUp (InputEvent event, float x, float y, int pointer, int button) {
-
+                game.setScreen(ScreensManager.getSingleton().getScreen(game, ScreensManager.SCREENS.CREDITS_SCREEN));
 
             }
             @Override
