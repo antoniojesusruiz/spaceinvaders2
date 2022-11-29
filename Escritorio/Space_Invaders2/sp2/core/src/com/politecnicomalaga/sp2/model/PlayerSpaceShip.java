@@ -75,6 +75,7 @@ public class PlayerSpaceShip extends Actor {
                 //stage.addActor(bala);
                 disparosActivos.add(bala);
             }
+            bala.playSound();
             timeToFire=0;
         }
     }
