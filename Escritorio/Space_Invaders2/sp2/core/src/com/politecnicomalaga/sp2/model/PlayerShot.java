@@ -12,10 +12,12 @@ import com.politecnicomalaga.sp2.managers.*;
 public class PlayerShot extends Actor {
 
     private Texture skin;
+    private Sound soundShot;
 
     public PlayerShot(PlayerSpaceShip shotOwner) {
         super();
         setBounds(0,0, SettingsManager.SHOT_WIDTH, SettingsManager.SHOT_HEIGHT);
+        soundShot = Gdx.audio.newSound(Gdx.files.internal("sounds/damage1.wav"));
         // Toma las posiciones de la nave principal y un poco de altura para no aparecer en el
         // mismo sitio.
         setX(shotOwner.getX()+SettingsManager.MIDPLAYER_SIZE-(SettingsManager.MIDSHOT_WIDTH));
@@ -38,6 +40,10 @@ public class PlayerShot extends Actor {
         this.setY(this.getY()+3);
     }
 
+    public void playSound(){
+        soundShot.play();
+    }
+    
     public void dispose() {
         if (this!=null) {
             this.dispose();
