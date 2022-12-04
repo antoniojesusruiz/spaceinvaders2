@@ -18,6 +18,7 @@ import com.politecnicomalaga.sp2.GdxSpaceInvaders2;
 import com.politecnicomalaga.sp2.managers.AssetsManager;
 import com.politecnicomalaga.sp2.managers.ScreensManager;
 import com.politecnicomalaga.sp2.managers.LanguageManager;
+import com.politecnicomalaga.sp2.managers.SoundsManager;
 
 /**
  * SplashScreen Class. It is showed when the game ends

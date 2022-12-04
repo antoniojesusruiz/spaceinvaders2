@@ -7,6 +7,7 @@ import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.politecnicomalaga.sp2.managers.*;
+import com.politecnicomalaga.sp2.managers.SoundsManager;
 
 
 public class PlayerShot extends Actor {
