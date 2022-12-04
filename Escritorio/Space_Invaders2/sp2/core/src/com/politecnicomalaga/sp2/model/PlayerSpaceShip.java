@@ -12,6 +12,7 @@ import com.politecnicomalaga.sp2.managers.AssetsManager;
 import com.politecnicomalaga.sp2.managers.GameManager;
 import com.politecnicomalaga.sp2.managers.SettingsManager;
 import com.politecnicomalaga.sp2.view.GameScreen;
+import com.politecnicomalaga.sp2.managers.SoundsManager;
 
 import java.util.Set;
 
