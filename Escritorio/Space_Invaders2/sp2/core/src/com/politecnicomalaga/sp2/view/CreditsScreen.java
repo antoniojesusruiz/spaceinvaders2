@@ -52,6 +52,7 @@ public class CreditsScreen implements Screen {
                 //Le decimos al juego que coja y asigne una screen nueva, en concreto
                 //una GameScreen
                 game.setScreen(ScreensManager.getSingleton().getScreen(game, ScreensManager.SCREENS.SPLASH_SCREEN));
+                SoundsManager.getSingleton().playSound(SoundsManager.TypeSound.BUTTON);
             }
 
 
