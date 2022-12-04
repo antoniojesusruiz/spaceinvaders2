@@ -65,7 +65,7 @@ public class SplashScreen implements Screen {
         //Le decimos al juego que coja y asigne una screen nueva, en concreto
         //una GameScreen
                 game.setScreen(ScreensManager.getSingleton().getScreen(game, ScreensManager.SCREENS.GAME_SCREEN));
-
+                SoundsManager.getSingleton().playSound(SoundsManager.TypeSound.BUTTON);
             }
 
 
@@ -91,8 +91,8 @@ public class SplashScreen implements Screen {
         settingsButton.addListener(new InputListener(){
             @Override
             public void touchUp (InputEvent event, float x, float y, int pointer, int button) {
-
                 game.setScreen(ScreensManager.getSingleton().getScreen(game, ScreensManager.SCREENS.SETTINGS_SCREEN));
+                SoundsManager.getSingleton().playSound(SoundsManager.TypeSound.BUTTON);
             }
             @Override
             public boolean touchDown (InputEvent event, float x, float y, int pointer, int button) {
@@ -120,7 +120,7 @@ public class SplashScreen implements Screen {
             @Override
             public void touchUp (InputEvent event, float x, float y, int pointer, int button) {
                 game.setScreen(ScreensManager.getSingleton().getScreen(game, ScreensManager.SCREENS.CREDITS_SCREEN));
-
+                SoundsManager.getSingleton().playSound(SoundsManager.TypeSound.BUTTON);
             }
             @Override
             public boolean touchDown (InputEvent event, float x, float y, int pointer, int button) {

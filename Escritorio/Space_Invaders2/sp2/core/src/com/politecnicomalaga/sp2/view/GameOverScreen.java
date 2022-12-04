@@ -60,6 +60,7 @@ public class GameOverScreen implements Screen {
         buttonPlay.addListener(new InputListener(){
             public void touchUp (InputEvent event, float x, float y, int pointer, int button){
                 game.setScreen(ScreensManager.getSingleton().getScreen(game, ScreensManager.SCREENS.GAME_SCREEN));
+                SoundsManager.getSingleton().playSound(SoundsManager.TypeSound.BUTTON);
             }
 
             public boolean touchDown(InputEvent event, float x, float y, int pointer, int button){
@@ -76,6 +77,7 @@ public class GameOverScreen implements Screen {
         buttonExit.addListener(new InputListener(){
             public void touchUp (InputEvent event, float x, float y, int pointer, int button){
                 game.setScreen(ScreensManager.getSingleton().getScreen(game, ScreensManager.SCREENS.SPLASH_SCREEN));
+                SoundsManager.getSingleton().playSound(SoundsManager.TypeSound.BUTTON);
             }
 
             public boolean touchDown(InputEvent event, float x, float y, int pointer, int button){

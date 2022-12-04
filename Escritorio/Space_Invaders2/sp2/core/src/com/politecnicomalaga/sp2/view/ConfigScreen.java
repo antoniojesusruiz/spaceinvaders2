@@ -65,6 +65,7 @@ public class ConfigScreen implements Screen{
         buttonSpanish.addListener(new InputListener(){
             public void touchUp (InputEvent event, float x, float y, int puntero, int boton){
                 LanguageManager.getSingleton().setActionLenguaje(LanguageManager.Lang.SPANISH);
+                SoundsManager.getSingleton().playSound(SoundsManager.TypeSound.BUTTON);
             }
 
             public boolean touchDown(InputEvent event, float x, float y, int puntero, int boton){
@@ -81,6 +82,7 @@ public class ConfigScreen implements Screen{
         buttonEnglish.addListener(new InputListener(){
             public void touchUp (InputEvent event, float x, float y, int pointer, int button){
                LanguageManager.getSingleton().setActionLenguaje(LanguageManager.Lang.ENGLISH);
+               SoundsManager.getSingleton().playSound(SoundsManager.TypeSound.BUTTON);
             }
 
             public boolean touchDown(InputEvent event, float x, float y, int pointer, int button){
@@ -96,6 +98,7 @@ public class ConfigScreen implements Screen{
         buttonExit.addListener(new InputListener(){
             public void touchUp (InputEvent event, float x, float y, int pointer, int button){
                 game.setScreen(ScreensManager.getSingleton().getScreen(game, ScreensManager.SCREENS.SPLASH_SCREEN));
+                SoundsManager.getSingleton().playSound(SoundsManager.TypeSound.BUTTON);
             }
 
             public boolean touchDown(InputEvent event, float x, float y, int pointer, int button){

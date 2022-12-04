@@ -18,4 +18,7 @@ public class AssetsManager {
     public static final String ATLAS_FILE = "sp2.atlas";
     public static final String ATLAS_ENEMY = "enemy";
     public static final String ATLAS_PLAYER = "player";
+    public static final String SOUND_SHOT = "";
+    public static final String SOUND_DAMAGE = "sounds/damage.wav";
+    public static final String SOUND_BUTTON = "";
 }
