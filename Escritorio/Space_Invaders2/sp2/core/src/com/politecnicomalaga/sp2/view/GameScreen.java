@@ -3,6 +3,7 @@ package com.politecnicomalaga.sp2.view;
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
+import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.InputListener;
@@ -24,13 +25,16 @@ public class GameScreen implements Screen {
     private Stage stage;
     private Game game;
     private PlayerSpaceShip heroShip;
-
+    private Music musica;
 
     public GameScreen(Game aGame) {
         game = aGame;
 
         stage = new Stage(new ScreenViewport());
         Gdx.input.setInputProcessor(stage);
+
+
+
         //We add the battalion, "the empire"
 
         Battalion empire = new Battalion(stage);
@@ -39,6 +43,11 @@ public class GameScreen implements Screen {
         heroShip = new PlayerSpaceShip(stage);
         //Agregamos la nave principal al escenario
         stage.addActor(heroShip);
+
+        //Music and properties
+        musica=Gdx.audio.newMusic(Gdx.files.internal("battletheme.ogg"));
+        musica.setLooping(true);
+        musica.setVolume(0.5f);
 
         //Se que en esta parte se trata de mover a la nave
 
@@ -77,6 +86,12 @@ public class GameScreen implements Screen {
     //Renderiza el escenario
     @Override
     public void render(float delta) {
+        //This for is because if we play the app, every screen is created, so all the musics are play at the same time. but with this will be only 1 time
+        //and in the right moment.
+        for (int i=0; i<1;i++){
+            musica.play();
+        }
+
         Gdx.gl.glClearColor(0, 0, 0, 1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
         stage.act(delta);

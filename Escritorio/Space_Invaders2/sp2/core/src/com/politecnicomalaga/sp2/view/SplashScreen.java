@@ -3,6 +3,7 @@ package com.politecnicomalaga.sp2.view;
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
+import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
@@ -29,9 +30,10 @@ public class SplashScreen implements Screen {
 
     private Stage stage;
     private Game game;
-
+    Music musica;
 
     public SplashScreen(final Game aGame) {
+
         game = aGame;
 
         stage = new Stage(new ScreenViewport());
@@ -39,6 +41,12 @@ public class SplashScreen implements Screen {
         TextureAtlas atlas = new TextureAtlas(Gdx.files.internal("uiskin.atlas"));
 
         Skin skin = new Skin (Gdx.files.internal("uiskin.json"),atlas);
+
+        //Music and properties
+        musica=Gdx.audio.newMusic(Gdx.files.internal("menutheme.ogg"));
+        musica.setLooping(true);
+        musica.setVolume(0.5f);
+        musica.play();
 
 //Esta orden se puede poner también en el show()
         Gdx.input.setInputProcessor(stage);
@@ -65,6 +73,7 @@ public class SplashScreen implements Screen {
         //Cuando el botón se suelte...
         //Le decimos al juego que coja y asigne una screen nueva, en concreto
         //una GameScreen
+                musica.dispose();
                 game.setScreen(ScreensManager.getSingleton().getScreen(game, ScreensManager.SCREENS.GAME_SCREEN));
                 SoundsManager.getSingleton().playSound(SoundsManager.TypeSound.BUTTON);
             }
@@ -171,6 +180,7 @@ public class SplashScreen implements Screen {
 
     @Override
     public void dispose() {
+        musica.dispose();
         stage.dispose();
     }
 
