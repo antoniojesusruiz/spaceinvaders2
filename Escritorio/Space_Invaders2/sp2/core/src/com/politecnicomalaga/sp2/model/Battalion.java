@@ -13,7 +13,7 @@ public class Battalion {
 
     //DECLARACIONES
     private Array<Squadron> batallon;
-
+    Stage stage;
 
 
 
@@ -40,7 +40,7 @@ public class Battalion {
 
 
     public Battalion(Stage baseStage){
-
+        stage= baseStage;
        int alto= SettingsManager.SCREEN_HEIGHT;
        int ancho=SettingsManager.SCREEN_WIDTH;
 

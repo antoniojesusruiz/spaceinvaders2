@@ -13,7 +13,7 @@ public class Squadron extends Actor {
 
     protected Array<EnemyShip> tropas;
     protected boolean right;
-
+    Stage stage;
 
 
 
@@ -21,14 +21,14 @@ public class Squadron extends Actor {
 
     public Squadron(Stage baseStage) {
         //Initiate the arraylist
-
+        stage= baseStage;
         tropas = new Array<EnemyShip>();
 
 
         //We have to create all the squadrons
 
         for (int i = 0; i< SettingsManager.ENEMIES_PER_SQUADRON; i++) {
-            EnemyShip newEnemy = new EnemyShip();
+            EnemyShip newEnemy = new EnemyShip(stage);
             baseStage.addActor(newEnemy);
         }
     }
@@ -46,7 +46,7 @@ public class Squadron extends Actor {
 
         for (int i=0;i< SettingsManager.ENEMIES_PER_SQUADRON;i++){
 
-            alien = new EnemyShip();
+            alien = new EnemyShip(stage);
 
             alien.setBounds((i+1)*distanceBTWships,vertPosition,SettingsManager.SCREEN_WIDTH,SettingsManager.SCREEN_HEIGHT);
 
