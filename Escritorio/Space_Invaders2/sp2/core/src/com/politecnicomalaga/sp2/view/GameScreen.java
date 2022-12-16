@@ -10,9 +10,14 @@ import com.badlogic.gdx.scenes.scene2d.InputListener;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.Touchable;
 import com.badlogic.gdx.utils.viewport.ScreenViewport;
+import com.politecnicomalaga.sp2.managers.ScreensManager;
 import com.politecnicomalaga.sp2.managers.SettingsManager;
 import com.politecnicomalaga.sp2.model.Battalion;
+import com.politecnicomalaga.sp2.model.EnemyShip;
+import com.politecnicomalaga.sp2.model.EnemyShot;
+import com.politecnicomalaga.sp2.model.PlayerShot;
 import com.politecnicomalaga.sp2.model.PlayerSpaceShip;
+import com.politecnicomalaga.sp2.model.Squadron;
 
 /**
  * Clase GameScreen. Donde jugamos el juego y tenemos la batalla principal
@@ -26,6 +31,7 @@ public class GameScreen implements Screen {
     private Game game;
     private PlayerSpaceShip heroShip;
     private Music musica;
+    private Battalion empire;
 
     public GameScreen(Game aGame) {
         game = aGame;
@@ -37,12 +43,13 @@ public class GameScreen implements Screen {
 
         //We add the battalion, "the empire"
 
-        Battalion empire = new Battalion(stage);
+        empire = new Battalion(stage);
 
         //We add the main player
         heroShip = new PlayerSpaceShip(stage);
         //Agregamos la nave principal al escenario
         stage.addActor(heroShip);
+        stage.addActor(empire);
 
         //Music and properties
         musica=Gdx.audio.newMusic(Gdx.files.internal("battletheme.ogg"));
@@ -90,6 +97,27 @@ public class GameScreen implements Screen {
         //and in the right moment.
         for (int i=0; i<1;i++){
             musica.play();
+        }
+
+        for (PlayerShot disparos:heroShip.getDisparosActivos()) {
+            for (Squadron squad: empire.getBatallon()) {
+                for (EnemyShip enemy: squad.getTropas()) {
+                    if (enemy.calculateCollisions(disparos)) {
+                        disparos.remove();
+                        squad.getTropas().removeValue(enemy, true);
+                    }
+                    for (EnemyShot disparosEnemigo: enemy.getDisparosActivos()) {
+                        if (heroShip.calculateCollisions(disparosEnemigo)) {
+                            disparosEnemigo.remove();
+                            enemy.getDisparosActivos().removeValue(disparosEnemigo,true);
+                        }
+                    }
+                }
+            }
+        }
+        if (heroShip.isMuerto()) {
+            this.dispose();
+            game.setScreen(ScreensManager.getSingleton().getScreen(game, ScreensManager.SCREENS.GAMEOVER_SCREEN));
         }
 
         Gdx.gl.glClearColor(0, 0, 0, 1);
