@@ -72,7 +72,7 @@ public class EnemyShip extends Actor {
         // PlayerShot bala= new PlayerShot(this);
         if(muerto){
             this.remove();
-            this.dispose();
+            //this.dispose();
         }
         timeToFire+= delta;
         /*if(timeToFire>5){
@@ -109,9 +109,9 @@ public class EnemyShip extends Actor {
     }
     public boolean calculateCollisions(PlayerShot hb){
         boolean result= false;
-        Rectangle hitbox= hb.getBody();
-        if(hbBody!=null && hitbox!=null){
-            result=hitbox.overlaps(hbBody);
+        Rectangle hbBody= hb.getBody();
+        if(hbBody!=null && hitBox!=null){
+            result=hitBox.overlaps(hbBody);
             if(result){
                 //se destruye
                 this.muerto=true;
@@ -121,5 +121,9 @@ public class EnemyShip extends Actor {
     }
     public void descartar(EnemyShot bala){
         recamara.add(bala);
+    }
+
+    public Array<EnemyShot> getDisparosActivos() {
+        return disparosActivos;
     }
 }

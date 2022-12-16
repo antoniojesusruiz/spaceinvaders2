@@ -19,23 +19,24 @@ public class Squadron extends Actor {
 
 
 
-    public Squadron(Stage baseStage) {
-        //Initiate the arraylist
-        stage= baseStage;
-        tropas = new Array<EnemyShip>();
-
-
-        //We have to create all the squadrons
-
-        for (int i = 0; i< SettingsManager.ENEMIES_PER_SQUADRON; i++) {
-            EnemyShip newEnemy = new EnemyShip(stage);
-            baseStage.addActor(newEnemy);
-        }
-    }
+//    public Squadron(Stage baseStage) {
+//        //Initiate the arraylist
+//        stage= baseStage;
+//        tropas = new Array<EnemyShip>();
+//
+//
+//        //We have to create all the squadrons
+//
+//        for (int i = 0; i< SettingsManager.ENEMIES_PER_SQUADRON; i++) {
+//            EnemyShip newEnemy = new EnemyShip(stage);
+//            baseStage.addActor(newEnemy);
+//        }
+//    }
 
     //CONSTRUCTORES
 
     public Squadron(Stage baseStage, float vertPosition){
+        stage = baseStage;
         tropas= new Array<EnemyShip>();
 
         EnemyShip alien;
@@ -116,4 +117,7 @@ public class Squadron extends Actor {
 //    }
 
 
+    public Array<EnemyShip> getTropas() {
+        return tropas;
+    }
 }

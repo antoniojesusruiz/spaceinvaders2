@@ -5,6 +5,7 @@ import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
+import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.utils.Array;
@@ -23,6 +24,8 @@ public class PlayerSpaceShip extends Actor {
     private Array<PlayerShot> recamara =new Array<PlayerShot>();; //disparos que estan fuera de la pantalla
     private float timeToFire;
     private Stage stage;
+    private Rectangle body;
+    private boolean muerto;
 
     public PlayerSpaceShip(Stage stage) {
         super();
@@ -33,6 +36,8 @@ public class PlayerSpaceShip extends Actor {
         setY(SettingsManager.MIDPLAYER_SIZE);
         skin = new Animation<TextureRegion>(0.25f, atlas.findRegions(AssetsManager.ATLAS_PLAYER), Animation.PlayMode.LOOP);
         this.stage=stage;
+        body = null;
+        muerto = false;
     }
     @Override
     public void draw(Batch batch, float parentAlpha) {
@@ -46,7 +51,11 @@ public class PlayerSpaceShip extends Actor {
     @Override
     public void act(float delta) {
 
+        if (muerto) {
+            this.remove();
+        }
         super.act(delta);
+        this.calculateBodyRectangle();
        // PlayerShot bala= new PlayerShot(this);
         timeToFire+= delta;
         /*if(timeToFire>5){
@@ -90,5 +99,30 @@ public class PlayerSpaceShip extends Actor {
         if (this!=null) {
             this.dispose();
         }
+    }
+
+    public Array<PlayerShot> getDisparosActivos() {
+        return disparosActivos;
+    }
+
+    public void calculateBodyRectangle() {
+        body = new Rectangle(getX(), getY(),SettingsManager.PLAYER_SIZE, SettingsManager.PLAYER_SIZE);
+    }
+
+    public boolean calculateCollisions (EnemyShot en) {
+        boolean result= false;
+        Rectangle enBody= en.getHitBox();
+        if(enBody!=null && body!=null){
+            result=body.overlaps(enBody);
+            if(result){
+                //se destruye
+                this.muerto=true;
+            }
+        }
+        return result;
+    }
+
+    public boolean isMuerto() {
+        return muerto;
     }
 }

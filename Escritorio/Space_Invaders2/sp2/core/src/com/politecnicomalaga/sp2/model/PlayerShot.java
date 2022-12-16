@@ -5,6 +5,7 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
+import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.politecnicomalaga.sp2.managers.*;
 import com.politecnicomalaga.sp2.managers.SoundsManager;
@@ -13,6 +14,7 @@ import com.politecnicomalaga.sp2.managers.SoundsManager;
 public class PlayerShot extends Actor {
 
     private Texture skin;
+    private Rectangle body;
 
     public PlayerShot(PlayerSpaceShip shotOwner) {
         super();
@@ -24,6 +26,7 @@ public class PlayerShot extends Actor {
        // TextureAtlas atlas = new TextureAtlas(Gdx.files.internal(AssetsManager.ATLAS_FILE));
         //skin = new TextureRegion(atlas.findRegion("disparo_aliado")).getTexture();
          skin= new Texture(Gdx.files.internal("images/disparo_aliado.png"));
+         body = null;
     }
 
     @Override
@@ -35,6 +38,7 @@ public class PlayerShot extends Actor {
     @Override
     public void act(float delta) {
         super.act(delta);
+        this.calculateBodyRectangle();
         // Se mueve verticalmente
         this.setY(this.getY()+3);
     }
@@ -43,5 +47,13 @@ public class PlayerShot extends Actor {
         if (this!=null) {
             this.dispose();
         }
+    }
+
+    public void calculateBodyRectangle() {
+        body = new Rectangle(getX(), getY(),SettingsManager.SHOT_WIDTH, SettingsManager.SHOT_HEIGHT);
+    }
+
+    public Rectangle getBody() {
+        return body;
     }
 }

@@ -2,6 +2,7 @@ package com.politecnicomalaga.sp2.model;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.utils.Array;
 import com.politecnicomalaga.sp2.managers.AssetsManager;
@@ -9,7 +10,7 @@ import com.politecnicomalaga.sp2.managers.SettingsManager;
 
 import java.util.ArrayList;
 
-public class Battalion {
+public class Battalion extends Actor {
 
     //DECLARACIONES
     private Array<Squadron> batallon;
@@ -56,7 +57,7 @@ public class Battalion {
             escuadron.setY(distancia);
             distancia-= SettingsManager.ENEMIES_SIZE;
             batallon.add(escuadron);
-            baseStage.addActor(escuadron);
+           // baseStage.addActor(escuadron);
         }
     }
 
@@ -89,5 +90,9 @@ public class Battalion {
         }
 
         return estado;
+    }
+
+    public Array<Squadron> getBatallon() {
+        return batallon;
     }
 }
