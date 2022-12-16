@@ -22,6 +22,7 @@ public class EnemyShip extends Actor {
     private Stage stage;
     private Rectangle hitBox;
     private int maxTime;
+    private boolean muerto;
 
     private Animation<TextureRegion> skin;
     //ESTE STRING ES PROVISIONAL, CUANDO TENGAMOS EL ASSETMANAGER LISTO,TENEMOS QUE CAMBIARLO
@@ -37,6 +38,7 @@ public class EnemyShip extends Actor {
         //TextureAtlas atlas= new TextureAtlas(Gdx.files.internal("sp2.png"));
         TextureAtlas atlas= new TextureAtlas(Gdx.files.internal(AssetsManager.ATLAS_FILE));
         skin = new Animation<TextureRegion>(0.25f, atlas.findRegions(AssetsManager.ATLAS_ENEMY), Animation.PlayMode.LOOP);
+        muerto=false;
     }
     @Override
     public void draw(Batch batch, float parentAlpha) {
@@ -52,6 +54,11 @@ public class EnemyShip extends Actor {
         return hitBox;
     }
 
+    public void calculateBodyRectangle(){
+
+        hitBox= new Rectangle(this.getX(),this.getY(),SettingsManager.ENEMIES_SIZE,SettingsManager.ENEMIES_SIZE);
+    }
+
     public void dispose(){
         if(this!=null){
             this.dispose();
@@ -63,6 +70,10 @@ public class EnemyShip extends Actor {
 
         super.act(delta);
         // PlayerShot bala= new PlayerShot(this);
+        if(muerto){
+            this.remove();
+            this.dispose();
+        }
         timeToFire+= delta;
         /*if(timeToFire>5){
             stage.addActor(bala);
@@ -94,6 +105,19 @@ public class EnemyShip extends Actor {
             SoundsManager.getSingleton().playSound(SoundsManager.TypeSound.SHOT);
             timeToFire=0;
         }
+        calculateBodyRectangle();
+    }
+    public boolean calculateCollisions(PlayerShot hb){
+        boolean result= false;
+        Rectangle hitbox= hb.getBody();
+        if(hbBody!=null && hitbox!=null){
+            result=hitbox.overlaps(hbBody);
+            if(result){
+                //se destruye
+                this.muerto=true;
+            }
+        }
+        return result;
     }
     public void descartar(EnemyShot bala){
         recamara.add(bala);
