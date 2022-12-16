@@ -40,33 +40,27 @@ public class CreditsScreen implements Screen {
 
 // botones con texto
 
-        TextButton exitButton = new TextButton(LanguageManager.getSingleton().getString(LanguageManager.EXIT_LABEL),skin);
-        exitButton.setWidth(Gdx.graphics.getWidth()/2);
-        exitButton.setPosition(Gdx.graphics.getWidth()/2-exitButton.getWidth()/2,Gdx.graphics.getHeight()-exitButton.getHeight()*4);
+        //Boton para volver al menu
+        TextButton buttonExit= new TextButton(LanguageManager.getSingleton().getString(LanguageManager.EXIT_LABEL),skin);
+        buttonExit.setWidth(Gdx.graphics.getWidth()/2);
+        buttonExit.setPosition(Gdx.graphics.getWidth()/2-buttonExit.getWidth()/2,Gdx.graphics.getHeight()/2-buttonExit.getHeight()*12);
 
 
 
-        exitButton.addListener(new InputListener(){
-            @Override
-            public void touchUp (InputEvent event, float x, float y, int pointer, int button) {
-                //Cuando el botón se suelte...
-                //Le decimos al juego que coja y asigne una screen nueva, en concreto
-                //una GameScreen
+        //ACTIONLISTENER PARA EL botón EXIT(hace falta todavía el languageManager)
+
+        buttonExit.addListener(new InputListener(){
+            public void touchUp (InputEvent event, float x, float y, int pointer, int button){
                 game.setScreen(ScreensManager.getSingleton().getScreen(game, ScreensManager.SCREENS.SPLASH_SCREEN));
                 SoundsManager.getSingleton().playSound(SoundsManager.TypeSound.BUTTON);
             }
 
-
-            @Override
-            public boolean touchDown (InputEvent event, float x, float y, int pointer, int button) {
-
+            public boolean touchDown(InputEvent event, float x, float y, int pointer, int button){
                 return true;
             }
         });
-
-
-//El botón también es un actor.
-        stage.addActor(exitButton);
+        //los botones son actores también
+        stage.addActor(buttonExit);
 
     }
 

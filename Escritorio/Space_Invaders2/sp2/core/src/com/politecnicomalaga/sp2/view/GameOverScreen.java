@@ -3,6 +3,7 @@ package com.politecnicomalaga.sp2.view;
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
+import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
@@ -23,10 +24,17 @@ import com.politecnicomalaga.sp2.managers.SoundsManager;
 public class GameOverScreen implements Screen {
     private Stage GameOverStage;
     private Game game;
-
+    private Music musica;
     Texture gameOver = new Texture(AssetsManager.GAME_OVER_IMAGE);
 
     public GameOverScreen(final Game configGame){
+
+        //Music and properties
+        musica=Gdx.audio.newMusic(Gdx.files.internal("gameovertheme.ogg"));
+        musica.setLooping(true);
+        musica.setVolume(0.5f);
+        musica.play();
+
         TextureAtlas atlas = new TextureAtlas(Gdx.files.internal("uiskin.atlas"));
 
         Skin skin = new Skin (Gdx.files.internal("uiskin.json"),atlas);
@@ -81,6 +89,7 @@ public class GameOverScreen implements Screen {
             public void touchUp (InputEvent event, float x, float y, int pointer, int button){
                 game.setScreen(ScreensManager.getSingleton().getScreen(game, ScreensManager.SCREENS.SPLASH_SCREEN));
                 SoundsManager.getSingleton().playSound(SoundsManager.TypeSound.BUTTON);
+                musica.dispose();
             }
 
             public boolean touchDown(InputEvent event, float x, float y, int pointer, int button){
@@ -143,6 +152,8 @@ public class GameOverScreen implements Screen {
 
     @Override
     public void dispose() {
+
+        musica.dispose();
         GameOverStage.dispose();
     }
 }

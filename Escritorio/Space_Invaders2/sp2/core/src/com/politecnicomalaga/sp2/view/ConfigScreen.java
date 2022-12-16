@@ -4,6 +4,8 @@ import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.GL20;
+import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.InputListener;
@@ -17,12 +19,13 @@ import com.politecnicomalaga.sp2.GdxSpaceInvaders2;
 import com.politecnicomalaga.sp2.managers.AssetsManager;
 import com.politecnicomalaga.sp2.managers.ScreensManager;
 import com.politecnicomalaga.sp2.managers.LanguageManager;
+import com.politecnicomalaga.sp2.managers.SettingsManager;
 import com.politecnicomalaga.sp2.managers.SoundsManager;
 
 public class ConfigScreen implements Screen{
     private Stage configStage;
     private Game game;
-
+    Texture FONDO = new Texture(AssetsManager.CONFIG_IMAGE);
     public ConfigScreen(final Game configGame){
         game=configGame;
 
@@ -51,12 +54,12 @@ public class ConfigScreen implements Screen{
         //Boton para lengua inglés. cuidado con la variable english_BUTTON
         TextButton buttonEnglish= new TextButton(LanguageManager.getSingleton().getString(LanguageManager.ENGLISH_LABEL),skin);
         buttonEnglish.setWidth(Gdx.graphics.getWidth()/2);
-        buttonEnglish.setPosition(Gdx.graphics.getWidth()/2-buttonEnglish.getWidth()/2,Gdx.graphics.getHeight()/2-buttonEnglish.getHeight()*4);
+        buttonEnglish.setPosition(Gdx.graphics.getWidth()/2-buttonEnglish.getWidth()/2,Gdx.graphics.getHeight()/2-buttonEnglish.getHeight()*6);
 
         //Boton para volver al menu
         TextButton buttonExit= new TextButton(LanguageManager.getSingleton().getString(LanguageManager.EXIT_LABEL),skin);
         buttonExit.setWidth(Gdx.graphics.getWidth()/2);
-        buttonExit.setPosition(Gdx.graphics.getWidth()/2-buttonExit.getWidth()/2,Gdx.graphics.getHeight()/2-buttonExit.getHeight()*4);
+        buttonExit.setPosition(Gdx.graphics.getWidth()/2-buttonExit.getWidth()/2,Gdx.graphics.getHeight()/2-buttonExit.getHeight()*8);
 
 
 
@@ -131,6 +134,10 @@ public class ConfigScreen implements Screen{
         Gdx.gl.glClearColor(0, 0, 0, 1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
         configStage.act();
+        SpriteBatch batch = new SpriteBatch();
+        batch.begin();
+        batch.draw(FONDO,0,0, SettingsManager.SCREEN_WIDTH,SettingsManager.SCREEN_HEIGHT);
+        batch.end();
         configStage.draw();
     }
 

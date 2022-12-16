@@ -6,6 +6,7 @@ import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.InputListener;
@@ -19,6 +20,7 @@ import com.politecnicomalaga.sp2.GdxSpaceInvaders2;
 import com.politecnicomalaga.sp2.managers.AssetsManager;
 import com.politecnicomalaga.sp2.managers.ScreensManager;
 import com.politecnicomalaga.sp2.managers.LanguageManager;
+import com.politecnicomalaga.sp2.managers.SettingsManager;
 import com.politecnicomalaga.sp2.managers.SoundsManager;
 
 /**
@@ -31,7 +33,7 @@ public class SplashScreen implements Screen {
     private Stage stage;
     private Game game;
     Music musica;
-
+    Texture splash = new Texture(AssetsManager.SPLASH_IMAGE);
     public SplashScreen(final Game aGame) {
 
         game = aGame;
@@ -73,6 +75,7 @@ public class SplashScreen implements Screen {
         //Cuando el botón se suelte...
         //Le decimos al juego que coja y asigne una screen nueva, en concreto
         //una GameScreen
+                musica.stop();
                 musica.dispose();
                 game.setScreen(ScreensManager.getSingleton().getScreen(game, ScreensManager.SCREENS.GAME_SCREEN));
                 SoundsManager.getSingleton().playSound(SoundsManager.TypeSound.BUTTON);
@@ -154,6 +157,10 @@ public class SplashScreen implements Screen {
         Gdx.gl.glClearColor(0, 0, 0, 1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
         stage.act();
+        SpriteBatch batch = new SpriteBatch();
+        batch.begin();
+        batch.draw(splash,0,0, SettingsManager.SCREEN_WIDTH,SettingsManager.SCREEN_HEIGHT);
+        batch.end();
         stage.draw();
     }
 
