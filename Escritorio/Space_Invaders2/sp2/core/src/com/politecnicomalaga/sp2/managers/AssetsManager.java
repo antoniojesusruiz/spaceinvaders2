@@ -15,6 +15,8 @@ public class AssetsManager {
     public static final String NUMBERS_SPRITES = "numbers/digito";
     public static final String NUMBERS_EXT_SPRITES =".png";
     public static final String CREDITS_IMAGE="CreditosProvisional.png";
+    public static final String SPLASH_IMAGE="images/splashBackground.jpg";
+    public static final String CONFIG_IMAGE="images/configBackground.jpg";
     public static final String GAME_OVER_IMAGE = "GameOverProvisional.png";
     public static final String ATLAS_FILE = "sp2.atlas";
     public static final String ATLAS_ENEMY = "enemy";

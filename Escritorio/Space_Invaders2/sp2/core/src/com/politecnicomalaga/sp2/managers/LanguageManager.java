@@ -13,8 +13,8 @@ public class LanguageManager {
     public static final int SPLASH_LABEL = 6;
     public static final int GAMEOVER_LABEL = 7;
 
-    private static final String[] spanishTexts = {"ESPAÑOL", "INGLES", "JUGAR", "CONFIGURACION", "SALIR", "CREDITOS", "SPACEINVADER", "FIN DEL JUEGO"};
-    private static final String[] englishTexts = {"SPANISH", "ENGLISH", "PLAY","SETTING", "EXIT", "CREDITS", "SPACEINVADER", "GAMEOVER"};
+    private static final String[] spanishTexts = {"ESPANOL", "INGLES", "JUGAR", "CONFIGURACION", "SALIR", "CREDITOS", "SPACEINVADER", "FIN DEL JUEGO"};
+    private static final String[] englishTexts = {"SPANISH", "ENGLISH", "PLAY","SETTINGS", "EXIT", "CREDITS", "SPACEINVADER", "GAMEOVER"};
 
     private static LanguageManager singleton;
 
